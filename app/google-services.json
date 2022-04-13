@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "824796663715",
+    "project_id": "gapli-56a77",
+    "storage_bucket": "gapli-56a77.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:824796663715:android:1b674c643e93268de51416",
+        "android_client_info": {
+          "package_name": "com.gapli.gapli"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "824796663715-d92kq9sscbqh9i1npfpahv7uldjfbmcd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDXMwmkIOZo_5KBnaobVQhWw3Ott9TFVas"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "824796663715-d92kq9sscbqh9i1npfpahv7uldjfbmcd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

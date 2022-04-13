@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="gel">#220000aa</color>
+    <color name="git">#22aa0000</color>
+    <color name="text">#fff</color>
+    <color name="background">#ffE0ffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="black_image">#55000000</color>
+
 </resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:paddingTop="5dp"
+    android:id="@+id/root"
+    android:layout_height="80dp">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:id="@+id/image"
+        android:src="@drawable/d" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:id="@+id/name"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:layout_gravity="right"
+        android:textColor="@color/text"
+        android:text="Nevşehir"
+        android:textSize="30dp"
+        android:gravity="center"
+        android:background="@drawable/city_bacground_right"
+
+        />
+</FrameLayout>
