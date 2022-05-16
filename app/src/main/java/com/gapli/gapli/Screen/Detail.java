@@ -105,7 +105,6 @@ public class Detail extends AppCompatActivity {
         sliderView.setSliderAdapter(imageAdapter);
         sliderView.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
         // üstteki görsellerin geçiş animasyonu
-        sliderView.setSliderTransformAnimation(SliderAnimations.FADETRANSFORMATION);
         sliderView.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
         sliderView.setIndicatorSelectedColor(Color.WHITE);
         sliderView.setIndicatorUnselectedColor(Color.GRAY);
@@ -116,7 +115,6 @@ public class Detail extends AppCompatActivity {
         placesToVsitsAdaptor = new SliderAdapter(this);
         placeToVsitSlider.setSliderAdapter(placesToVsitsAdaptor);
         placeToVsitSlider.setIndicatorAnimation(IndicatorAnimationType.WORM); //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
-        placeToVsitSlider.setSliderTransformAnimation(SliderAnimations.ZOOMOUTTRANSFORMATION);
         placeToVsitSlider.setAutoCycleDirection(SliderView.AUTO_CYCLE_DIRECTION_BACK_AND_FORTH);
         placeToVsitSlider.setIndicatorSelectedColor(Color.WHITE);
         placeToVsitSlider.setIndicatorUnselectedColor(Color.GRAY);
@@ -143,13 +141,15 @@ public class Detail extends AppCompatActivity {
                 if(!com.isEmpty()){
                     List<Comment> list =  detailModel.getComments();
                     if(list== null) list = new ArrayList<>();
-                    list.add(new Comment(
-                            reference.child("comments").push().getKey().toString(),
-                            com,
-                            auth.getUid(),
-                            auth.getCurrentUser().getDisplayName(),
-                            auth.getCurrentUser().getPhotoUrl().toString()
-                      ));
+                    Comment c = new Comment();
+                    c.setComment(com);
+                    c.setId(reference.child("comments").push().getKey().toString());
+                    if(auth.getCurrentUser()!=null) {
+                        c.setUserId(auth.getUid());
+                        if (auth.getCurrentUser().getPhotoUrl()!=null)c.setUserImage(auth.getCurrentUser().getPhotoUrl().toString());
+                        if (auth.getCurrentUser().getDisplayName()!=null)c.setUserName(auth.getCurrentUser().getDisplayName());
+                    }
+                    list.add(c);
                     detailModel.setComments(list);
                     reference.child("comments").setValue(list);
                     commentText.setText("");
