@@ -3,6 +3,7 @@ package com.gapli.gapli.Adapter;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,7 @@ public class SliderAdapter extends
     private Context context;
     private List<String> images = new ArrayList<>();
     private List<PlacesToVsit> placesToVsits = new ArrayList<>();
+    public String des;
 
     public SliderAdapter(Context context) {
         this.context = context;
@@ -49,11 +51,11 @@ public class SliderAdapter extends
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
-
         if(placesToVsits.size()>0) {
+            Log.d("sıra",String.valueOf(position));
             PlacesToVsit placesToVsit = placesToVsits.get(position);
             viewHolder.fl_shadow_container.setBackgroundColor(context.getColor(R.color.black_image));
-            viewHolder.Description.setText(placesToVsit.getDescription());
+            //viewHolder.Description.setText(placesToVsit.getDescription());
             viewHolder.Title.setText(placesToVsit.getTitle());
             Glide.with(viewHolder.itemView)
                     .load(placesToVsit.getImageUrl())

@@ -48,7 +48,7 @@
                     app:sliderIndicatorRadius="2dp"
                     app:sliderIndicatorSelectedColor="#5A5A5A"
                     app:sliderIndicatorUnselectedColor="#FFF"
-                    app:sliderScrollTimeInSec="1"
+                    app:sliderScrollTimeInSec="5"
                     app:sliderStartAutoCycle="true" />
 
             </androidx.cardview.widget.CardView>
@@ -77,9 +77,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/place"
-                android:textStyle="italic"
+                android:textStyle="italic|bold"
                 android:padding="5dp"
-                android:textSize="15dp"
+                android:textSize="20dp"
                 android:textColor="@color/black"
                 />
 
@@ -104,11 +104,19 @@
                     app:sliderIndicatorPadding="3dp"
                     app:sliderIndicatorRadius="2dp"
                     app:sliderIndicatorSelectedColor="#5A5A5A"
-                    app:sliderIndicatorUnselectedColor="#FFF"
-                    app:sliderScrollTimeInSec="3"
-                    app:sliderStartAutoCycle="true" />
+                    app:sliderIndicatorUnselectedColor="#FFF" />
 
             </androidx.cardview.widget.CardView>
+            <TextView
+                android:id="@+id/vsitdes"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Şehir Adı"
+                android:padding="5dp"
+                android:textSize="15dp"
+                android:textColor="@color/black"
+                />
+
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/commentList"
@@ -123,7 +131,7 @@
                 />
 
             <EditText
-                android:id="@+id/sentComment"
+                android:id="@+id/commentText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
