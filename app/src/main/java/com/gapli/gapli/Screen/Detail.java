@@ -1,10 +1,12 @@
 package com.gapli.gapli.Screen;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,7 +15,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.gapli.gapli.Adapter.CityAdapter;
 import com.gapli.gapli.Adapter.CommentAdaptor;
@@ -22,6 +26,7 @@ import com.gapli.gapli.Model.CityDetailModel;
 import com.gapli.gapli.Model.CityModel;
 import com.gapli.gapli.Model.Comment;
 import com.gapli.gapli.Model.SliderItem;
+import com.gapli.gapli.Model.User;
 import com.gapli.gapli.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -34,6 +39,7 @@ import com.smarteist.autoimageslider.SliderAnimations;
 import com.smarteist.autoimageslider.SliderView;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Detail extends AppCompatActivity {
@@ -71,11 +77,28 @@ public class Detail extends AppCompatActivity {
     private TextView vsitdes;
     private FirebaseAuth auth;
 
+    private User user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail);
         init();
+    }
+
+    private void getUser(){
+        FirebaseDatabase.getInstance().getReference("Users")
+                .child(auth.getUid()).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                user = snapshot.getValue(User.class);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
     }
 
     private void init(){
@@ -89,6 +112,9 @@ public class Detail extends AppCompatActivity {
         vsitdes =findViewById(R.id.vsitdes);
 
         auth = FirebaseAuth.getInstance();
+        if (auth.getCurrentUser() != null) {
+            getUser();
+        }
 
 
         // yorumu gösterecegimiz liste
@@ -134,24 +160,22 @@ public class Detail extends AppCompatActivity {
             }
         });
 
+
+
         commentButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String com = commentText.getText().toString();
-                if(!com.isEmpty()){
-                    List<Comment> list =  detailModel.getComments();
-                    if(list== null) list = new ArrayList<>();
+                if(!com.isEmpty() && user!=null){
                     Comment c = new Comment();
                     c.setComment(com);
+                    c.setCityId(id);
                     c.setId(reference.child("comments").push().getKey().toString());
                     if(auth.getCurrentUser()!=null) {
                         c.setUserId(auth.getUid());
-                        if (auth.getCurrentUser().getPhotoUrl()!=null)c.setUserImage(auth.getCurrentUser().getPhotoUrl().toString());
-                        if (auth.getCurrentUser().getDisplayName()!=null)c.setUserName(auth.getCurrentUser().getDisplayName());
+                        c.setUserName(user.getName());
                     }
-                    list.add(c);
-                    detailModel.setComments(list);
-                    reference.child("comments").setValue(list);
+                    reference.child("comments").child(c.getId()).setValue(c);
                     commentText.setText("");
                 }
             }
@@ -193,11 +217,13 @@ public class Detail extends AppCompatActivity {
         placesToVsitsAdaptor.renewPlaceToVsityItems(detailModel.getPlacesToVsits());
         cityDes.setText(detailModel.getDescription());
 
+        HashMap<String,Comment> comments = new HashMap<>();
         if(detailModel.getComments()!=null) {
-            comment_adapter = new CommentAdaptor(getApplicationContext(), detailModel.getComments(), Detail.this);
-            // ardından bu nesneyi Recycler viev e veriyoruzz
-            commentList.setAdapter(comment_adapter);
+            comments =  detailModel.getComments();
         }
+        comment_adapter = new CommentAdaptor(getApplicationContext(),comments, Detail.this,new ArrayList<String>(comments.keySet()));
+        // ardından bu nesneyi Recycler viev e veriyoruzz
+        commentList.setAdapter(comment_adapter);
 
     }
 }

@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.gapli.gapli">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/mipmap"
@@ -10,21 +12,28 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.GAPLI">
         <activity
-            android:name=".Screen.Detail"
+            android:name=".Screen.Login"
             android:exported="false" />
         <activity
-            android:name=".Screen.home"
-            android:exported="true" >
+            android:name=".Screen.Profile"
+            android:exported="false" />
+        <activity
+            android:name=".Screen.Detail"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.Home"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.Register"
+            android:exported="true" />
+        <activity
+            android:name=".Screen.Splash"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".MainActivity"
-            android:exported="true">
-
         </activity>
     </application>
 

@@ -31,6 +31,21 @@
             android:textSize="20dp"
             />
 
+        <ImageView
+            android:id="@+id/edit"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:layout_marginLeft="100dp"
+            android:src="@drawable/edit" />
+        <ImageView
+            android:id="@+id/delete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:visibility="gone"
+            android:src="@drawable/delete" />
+
+
     </LinearLayout>
     <TextView
         android:id="@+id/userComment"

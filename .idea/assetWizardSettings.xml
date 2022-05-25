@@ -23,7 +23,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Library/Android/sdk/icons/material/materialicons/person/baseline_person_24.xml" />
+                                      <entry key="url" value="file:/$PROJECT_DIR$/../../../../../Android/sdk/icons/material/materialicons/delete/baseline_delete_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -33,7 +33,9 @@
                         </option>
                         <option name="values">
                           <map>
-                            <entry key="outputName" value="user" />
+                            <entry key="color" value="ff0000" />
+                            <entry key="outputName" value="delete" />
+                            <entry key="sourceFile" value="C:\Users\HASAN\Desktop\Proje\GAPLI" />
                           </map>
                         </option>
                       </PersistentState>

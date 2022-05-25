@@ -5,16 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 
 import com.gapli.gapli.Adapter.CityAdapter;
-import com.gapli.gapli.Model.CityDetailModel;
 import com.gapli.gapli.Model.CityModel;
-import com.gapli.gapli.Model.PlacesToVsit;
 import com.gapli.gapli.R;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -24,9 +22,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
-public class home extends AppCompatActivity {
+public class Home extends AppCompatActivity {
 
     // ürünlerimizi yerleştirecegimiz listemiz
     private RecyclerView cityList;
@@ -47,7 +44,7 @@ public class home extends AppCompatActivity {
       
         init();
         loadcity();
-        FirebaseAuth.getInstance().signInAnonymously();
+
     }
 
     private void init() {
@@ -68,6 +65,8 @@ public class home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //TODO: profil ekranına geçiş bu kısımdan yapılacak
+                Intent intent = new Intent(Home.this, Profile.class);
+                startActivity(intent);
             }
         });
     }
@@ -91,7 +90,7 @@ public class home extends AppCompatActivity {
                     citys.add(city);
                 }
                 // Recycler viev e veri göndermemiz için yarattıgımız adaptorumuzden bir nesne türetiyoruz
-                city_adapter = new CityAdapter(getApplicationContext(), citys, home.this);
+                city_adapter = new CityAdapter(getApplicationContext(), citys, Home.this);
                 // ardından bu nesneyi Recycler viev e veriyoruzz
                 cityList.setAdapter(city_adapter);
 

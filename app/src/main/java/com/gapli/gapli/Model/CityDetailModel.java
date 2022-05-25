@@ -1,5 +1,6 @@
 package com.gapli.gapli.Model;
 
+import java.util.HashMap;
 import java.util.List;
 
 public class CityDetailModel {
@@ -7,7 +8,7 @@ public class CityDetailModel {
     String name;
     List<String> images;
     List<PlacesToVsit> placesToVsits;
-    List<Comment> comments;
+    HashMap<String,Comment> comments;
     String title;
     String description;
 
@@ -15,7 +16,7 @@ public class CityDetailModel {
     public CityDetailModel() {
     }
 
-    public CityDetailModel(String id, String name, List<String> images, List<PlacesToVsit> placesToVsits, List<Comment> comments, String title, String description) {
+    public CityDetailModel(String id, String name, List<String> images, List<PlacesToVsit> placesToVsits, HashMap<String,Comment>  comments, String title, String description) {
         this.id = id;
         this.name = name;
         this.images = images;
@@ -57,11 +58,11 @@ public class CityDetailModel {
         this.placesToVsits = placesToVsits;
     }
 
-    public List<Comment> getComments() {
+    public HashMap<String,Comment>  getComments() {
         return comments;
     }
 
-    public void setComments(List<Comment> comments) {
+    public void setComments(HashMap<String,Comment>  comments) {
         this.comments = comments;
     }
 

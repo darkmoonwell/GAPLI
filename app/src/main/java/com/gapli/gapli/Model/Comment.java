@@ -4,18 +4,20 @@ public class Comment {
     String id;
     String comment;
     String userId;
+    String cityId;
     String userName;
     String userImage;
 
     public Comment() {
     }
 
-    public Comment(String id, String comment, String userId, String userName, String userImage) {
+    public Comment(String id, String comment, String userId, String userName, String userImage, String cityId) {
         this.id = id;
         this.comment = comment;
         this.userId = userId;
         this.userName = userName;
         this.userImage = userImage;
+        this.cityId = cityId;
     }
 
     public String getId() {
@@ -56,5 +58,13 @@ public class Comment {
 
     public void setUserImage(String userImage) {
         this.userImage = userImage;
+    }
+
+    public String getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(String cityId) {
+        this.cityId = cityId;
     }
 }
